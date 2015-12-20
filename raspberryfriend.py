@@ -23,7 +23,6 @@ radio.setPALevel(NRF24.PA_MAX)
 radio.setAutoAck(1)
 radio.openWritingPipe(tx_pipe)
 radio.openReadingPipe(1, rx_pipe)
-
 radio.startListening()
 radio.stopListening()
 
@@ -33,10 +32,11 @@ radio.startListening()
 while True:
     pipe = [0]
     while not radio.available(pipe, True):
-        time.sleep(1000/1000000.0)
+        time.sleep(1000/1000.0)
         #radio.printDetails()
         
     recv_buffer = []
+#    print "Payload %d " % radio.getDynamicPayloadSize()
     radio.read(recv_buffer)
     out = ''.join(chr(i) for i in recv_buffer)
     print out
