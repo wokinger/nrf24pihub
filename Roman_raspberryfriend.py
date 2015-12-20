@@ -8,13 +8,14 @@ import time
 from time import gmtime, strftime
 
 pipes = [[0xf0, 0xf0, 0xf0, 0xf0, 0xe1], [0xf0, 0xf0, 0xf0, 0xf0, 0xd2]]
+pipes = [[0xDE, 0xAD, 0xBE, 0xEF, 11], [0xDE, 0xAD, 0xBE, 0xEF, 0xff]]
 
 radio = NRF24()
 radio.begin(0, 0,25,18) #set gpio 25 as CE pin
 radio.setRetries(15,15)
 radio.setPayloadSize(32)
-radio.setChannel(0x4c)
-radio.setDataRate(NRF24.BR_250KBPS)
+radio.setChannel(0x0)
+radio.setDataRate(NRF24.BR_1MBPS)
 radio.setPALevel(NRF24.PA_MAX)
 radio.setAutoAck(1)
 radio.openWritingPipe(pipes[0])
