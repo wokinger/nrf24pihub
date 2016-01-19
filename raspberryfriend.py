@@ -9,6 +9,15 @@ from time import gmtime, strftime
 import sys
 import rrdtool
 
+import Adafruit_DHT
+sensor_dht = Adafruit_DHT.DHT22
+pin = 4
+
+import Adafruit_BMP.BMP085 as BMP085
+
+sensor_bmp = BMP085.BMP085()
+
+
 # in real life data_sources would be populated in loop or something similar
 data_sources=[ 'DS:temp0:GAUGE:1200:-40:40', 
                'DS:temp1:GAUGE:1200:-40:40',
@@ -53,7 +62,8 @@ except IOError:
     ret = rrdtool.create("%s" %(filename),
                 '--step', "%s" %(steps),
                 data_sources,
-                'RRA:AVERAGE:0.5:1:960' ,
+                'RRA:AVERAGE:0.5:1:24' ,
+                'RRA:AVERAGE:0.5:6:10' ,
                 'RRA:MIN:0.5:96:3600' ,
                 'RRA:MAX:0.5:96:3600' ,
                 'RRA:AVERAGE:0.5:96:3600' )
@@ -88,13 +98,29 @@ def printData(date,time,pressure, T0,H0,V0 ):
     sys.stdout.write(str('Pressure: ') + pressure + '\n')
     
 def ReadPressureSensor():
+
+    temp = sensor_bmp.read_temperature()
+    
+    # Read the current barometric pressure level
+    pressure = sensor_bmp.read_pressure()
+
+    # Set the altitude of your current location in meter
+    altitude = 370
+    psea = pressure / pow(1.0 - altitude/44330.0, 5.255)
+    print "Temperature:           %8.2f degC" % temp
+    print "Pressure:              %8.2f hPa" % (pressure / 100.0)
+    print "Pressure at sea level: %8.2f hPa" % (psea / 100.0)
+
     return 100000
 	
 def ReadRaspiSensor():
-    return "25-55"
+    humidity, temperature = Adafruit_DHT.read_retry(sensor_dht, pin)
+    print "Temperature " + str("%.2f" % temperature) +" Humidity: " + str("%.2f" % humidity) 
+    return str("%.2f" % temperature) + "-" + str("%.2f" % humidity) 
 
 pipes = [[0xf0, 0xf0, 0xf0, 0xf0, 0xe1], [0xf0, 0xf0, 0xf0, 0xf0, 0xd2]]
 pipes = [[0xDE, 0xAD, 0xBE, 0xEF, 0xff], [0xDE, 0xAD, 0xBE, 0xEF, 0x00]]
+
 
 radio = NRF24()
 radio.begin(0, 0,25,18) #set gpio 25 as CE pin
@@ -186,6 +212,6 @@ while True:
         data = ""
         data = "N:" + data0 + ":" + data1 + ":" + data2 + ":" + data3 + ":" + data4 + ":" + data5 + ":" + data6 + ":" + data7 + ":" + data_raspi
         print "Update Database: " + data
-        print "with template " + template
+        #print "with template " + template
         rrdtool.update( 'Weatherstation.rrd', '-t', "%s" %(template), "%s" %(data) )
         
