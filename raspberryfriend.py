@@ -107,16 +107,17 @@ def ReadPressureSensor():
     # Set the altitude of your current location in meter
     altitude = 370
     psea = pressure / pow(1.0 - altitude/44330.0, 5.255)
-    print "Temperature:           %8.2f degC" % temp
-    print "Pressure:              %8.2f hPa" % (pressure / 100.0)
-    print "Pressure at sea level: %8.2f hPa" % (psea / 100.0)
-
-    return 100000
+    #print "Temperature:           %8.2f degC" % temp
+    #print "Pressure:              %8.2f hPa" % (pressure / 100.0)
+    #print "Pressure at sea level: %8.2f hPa" % (psea / 100.0)
+    data = str("%.2f" % temp) + "-" + str("%.2f" % psea) 
+    return data
 	
 def ReadRaspiSensor():
     humidity, temperature = Adafruit_DHT.read_retry(sensor_dht, pin)
-    print "Temperature " + str("%.2f" % temperature) +" Humidity: " + str("%.2f" % humidity) 
-    return str("%.2f" % temperature) + "-" + str("%.2f" % humidity) 
+    #print "Temperature " + str("%.2f" % temperature) +" Humidity: " + str("%.2f" % humidity) 
+    data = str("%.2f" % temperature) + "-" + str("%.2f" % humidity) 
+    return data
 
 pipes = [[0xf0, 0xf0, 0xf0, 0xf0, 0xe1], [0xf0, 0xf0, 0xf0, 0xf0, 0xd2]]
 pipes = [[0xDE, 0xAD, 0xBE, 0xEF, 0xff], [0xDE, 0xAD, 0xBE, 0xEF, 0x00]]
@@ -203,11 +204,13 @@ while True:
     # store data from sensor in RRDb
     
     ## after two times data_0 update, store data 
-    if counter == 1 :
+    if counter == 3 :
         counter = 0;        
-        temp,humid = ReadRaspiSensor().split("-")
-        pressure = ReadPressureSensor()
-        data_raspi = temp + ":" + humid + ":" + str(pressure)
+        temp_dht,humid = ReadRaspiSensor().split("-")
+        temp_bmp,pressure = ReadPressureSensor().split("-")
+        
+        data_raspi = temp_bmp + ":" + humid + ":" + pressure
+        print "Raspi_data: Temp: " + temp_bmp +" degC, Humidity: " + humid + " %, Pressure: " + pressure + " hPa"
         
         data = ""
         data = "N:" + data0 + ":" + data1 + ":" + data2 + ":" + data3 + ":" + data4 + ":" + data5 + ":" + data6 + ":" + data7 + ":" + data_raspi
