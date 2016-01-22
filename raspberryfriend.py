@@ -60,13 +60,13 @@ try:
 except IOError:
     print "No Database found, reating a new one : " + filename
     ret = rrdtool.create("%s" %(filename),
-                '--step', "%s" %(steps),
                 data_sources,
-                'RRA:AVERAGE:0.5:1:24' ,
-                'RRA:AVERAGE:0.5:6:10' ,
-                'RRA:MIN:0.5:96:3600' ,
+                'RRA:AVERAGE:0.5:1:288' ,
+                'RRA:AVERAGE:0.5:6:672' ,
+                'RRA:MIN:0.5:24:732' ,
                 'RRA:MAX:0.5:96:3600' ,
-                'RRA:AVERAGE:0.5:96:3600' )
+                'RRA:AVERAGE:0.5:144:1460' )
+ 
     i=1
 
 def printData_all(date,time,pressure, T0,H0,V0, T1,H1,V1, T2,H2,V2, T3,H3,V3, T4,H4,V4 ):
@@ -158,12 +158,29 @@ while True:
     recv_buffer = []
     radio.read(recv_buffer)
     out = ''.join(chr(i) for i in recv_buffer)
-    #print out
-    node,  humidity, temperature, voltage = out.split("-")
+#    print out
+    
+    # count number of 
+    try:
+        node,  humidity, temperature, voltage = out.split("-")
+    except  ValueError:   
+        # skip this round
+        print "Oops!  incorrect number of - . Skipping this one"
+        print out
+        continue;
+    
     note_int = int(node)
-    temperature = float(temperature) /10;
-    voltage = float(voltage) / 1000;
-    humidity = float(humidity) / 10;
+    try: 
+        temperature = float(temperature) /10;
+        voltage = float(voltage) / 1000;
+        humidity = float(humidity) / 10;
+    except ValueError:
+        print "Oops!  Problems during float conversion:"
+        print "Out: "+ out;
+        print "Temp: " + str(temperature) + ", Voltage: " + str(voltage) + ", humidity: " + str(humidity)
+        
+        continue;
+    
     print " -->  Node: " + node + ", Temp: " + str(temperature) + ", Humidity: " + str(humidity) + ", Voltage: " + str(voltage)
     
     
@@ -210,7 +227,7 @@ while True:
         temp_bmp,pressure = ReadPressureSensor().split("-")
         
         data_raspi = temp_bmp + ":" + humid + ":" + pressure
-        print "Raspi_data: Temp: " + temp_bmp +" degC, Humidity: " + humid + " %, Pressure: " + pressure + " hPa"
+        print "Raspi_data: Temp_dht: "+ temp_dht +", Temp_bmp: " + temp_bmp +" degC, Humidity: " + humid + " %, Pressure: " + pressure + " hPa"
         
         data = ""
         data = "N:" + data0 + ":" + data1 + ":" + data2 + ":" + data3 + ":" + data4 + ":" + data5 + ":" + data6 + ":" + data7 + ":" + data_raspi
