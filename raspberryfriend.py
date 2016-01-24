@@ -169,8 +169,8 @@ while True:
         print out
         continue;
     
-    note_int = int(node)
     try: 
+        note_int = int(node)
         temperature = float(temperature) /10;
         voltage = float(voltage) / 1000;
         humidity = float(humidity) / 10;
