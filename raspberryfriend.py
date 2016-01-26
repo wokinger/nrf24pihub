@@ -180,7 +180,7 @@ while True:
         print "Temp: " + str(temperature) + ", Voltage: " + str(voltage) + ", humidity: " + str(humidity)
         
         continue;
-    
+
     print " -->  Node: " + node + ", Temp: " + str(temperature) + ", Humidity: " + str(humidity) + ", Voltage: " + str(voltage)
     
     
@@ -223,7 +223,11 @@ while True:
     ## after two times data_0 update, store data 
     if counter == 3 :
         counter = 0;        
-        temp_dht,humid = ReadRaspiSensor().split("-")
+        #temp_dht,humid = ReadRaspiSensor().split("-")
+        # raspi has no dht22 anymore
+        temp_dht = "-40";
+        humid = "-1";
+        
         temp_bmp,pressure = ReadPressureSensor().split("-")
         
         data_raspi = temp_bmp + ":" + humid + ":" + pressure

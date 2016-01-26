@@ -45,15 +45,15 @@ rrdtool graph \
 	LINE0:temp#B7B4D5:temp \
 	LINE1:temp0#9891D7:temp0 \
  	LINE2:temp1#7F76D5:T_Schlafzimmer   \
-	LINE3:temp2#695DD5:T_Badezimmer \
- 	LINE4:temp3#4838D5:T_Wohnzimmer   \
- 	LINE5:temp4#220FD2:T_Babyzimmer   \
+	LINE3:temp2#36DBCA:T_Badezimmer \
+ 	LINE4:temp3#4838D5:T_Balkon   \
+ 	LINE5:temp4#37FDFC:T_Babyzimmer   \
  	LINE6:humid#DBFFDA:Humidity   \
  	LINE7:humid0#BBFDBA:Humidity0   \
- 	LINE8:humid1#96FC94:H_Schlafzimmer   \
- 	LINE9:humid2#75FB73:H_Badezimmer   \
- 	LINE10:humid3#51FC4E:H_Wohnzimmer   \
- 	LINE11:humid4#26FD22:H_Babyzimmer   \
+ 	LINE8:humid1#008080:H_Schlafzimmer   \
+ 	LINE9:humid2#00ff00:H_Badezimmer   \
+ 	LINE10:humid3#40e0d0:H_Balkon   \
+ 	LINE11:humid4#37BC61:H_Babyzimmer   \
  	LINE12:voltage0#FEEDCF:Voltage0   \
  	LINE13:voltage1#FDDCA3:V_Schlafzimmer   \
  	LINE14:voltage2#FCCC79:V_Badezimmer   \
@@ -88,15 +88,15 @@ rrdtool graph \
 	LINE0:temp#B7B4D5:temp \
 	LINE1:temp0#9891D7:temp0 \
  	LINE2:temp1#7F76D5:T_Schlafzimmer   \
-	LINE3:temp2#695DD5:T_Badezimmer \
- 	LINE4:temp3#4838D5:T_Wohnzimmer   \
- 	LINE5:temp4#220FD2:T_Babyzimmer   \
+	LINE3:temp2#36DBCA:T_Badezimmer \
+ 	LINE4:temp3#4838D5:T_Balkon   \
+ 	LINE5:temp4#37FDFC:T_Babyzimmer   \
  	LINE6:humid#DBFFDA:Humidity   \
  	LINE7:humid0#BBFDBA:Humidity0   \
- 	LINE8:humid1#96FC94:H_Schlafzimmer   \
- 	LINE9:humid2#75FB73:H_Badezimmer   \
- 	LINE10:humid3#51FC4E:H_Wohnzimmer   \
- 	LINE11:humid4#26FD22:H_Babyzimmer   \
+ 	LINE8:humid1#008080:H_Schlafzimmer   \
+ 	LINE9:humid2#00ff00:H_Badezimmer   \
+ 	LINE10:humid3#40e0d0:H_Balkon   \
+ 	LINE11:humid4#37BC61:H_Babyzimmer   \
  	LINE12:voltage0#FEEDCF:Voltage0   \
  	LINE13:voltage1#FDDCA3:V_Schlafzimmer   \
  	LINE14:voltage2#FCCC79:V_Badezimmer   \
@@ -131,15 +131,15 @@ rrdtool graph \
 	LINE0:temp#B7B4D5:temp \
 	LINE1:temp0#9891D7:temp0 \
  	LINE2:temp1#7F76D5:T_Schlafzimmer   \
-	LINE3:temp2#695DD5:T_Badezimmer \
- 	LINE4:temp3#4838D5:T_Wohnzimmer   \
- 	LINE5:temp4#220FD2:T_Babyzimmer   \
+	LINE3:temp2#36DBCA:T_Badezimmer \
+ 	LINE4:temp3#4838D5:T_Balkon   \
+ 	LINE5:temp4#37FDFC:T_Babyzimmer   \
  	LINE6:humid#DBFFDA:Humidity   \
  	LINE7:humid0#BBFDBA:Humidity0   \
- 	LINE8:humid1#96FC94:H_Schlafzimmer   \
- 	LINE9:humid2#75FB73:H_Badezimmer   \
- 	LINE10:humid3#51FC4E:H_Wohnzimmer   \
- 	LINE11:humid4#26FD22:H_Babyzimmer   \
+ 	LINE8:humid1#008080:H_Schlafzimmer   \
+ 	LINE9:humid2#00ff00:H_Badezimmer   \
+ 	LINE10:humid3#40e0d0:H_Balkon   \
+ 	LINE11:humid4#37BC61:H_Babyzimmer   \
  	LINE12:voltage0#FEEDCF:Voltage0   \
  	LINE13:voltage1#FDDCA3:V_Schlafzimmer   \
  	LINE14:voltage2#FCCC79:V_Badezimmer   \
@@ -163,14 +163,14 @@ rrdtool graph \
 	LINE0:temp#B7B4D5:temp \
 	LINE1:temp0#9891D7:temp0 \
  	LINE2:temp1#7F76D5:T_Schlafzimmer   \
-	LINE3:temp2#695DD5:T_Badezimmer \
- 	LINE4:temp3#4838D5:T_Wohnzimmer   \
- 	LINE5:temp4#220FD2:T_Babyzimmer   \
+	LINE3:temp2#36DBCA:T_Badezimmer \
+ 	LINE4:temp3#4838D5:T_Balkon   \
+ 	LINE5:temp4#37FDFC:T_Babyzimmer   \
  	VDEF:TEMP=temp,LAST                	"GPRINT:TEMP:%.1lf °C"	 \
  	VDEF:T_0=temp0,LAST    	"GPRINT:T_0:%.1lf °C"	 \
  	VDEF:T_Schlafzimmer=temp1,LAST    	"GPRINT:T_Schlafzimmer:%.1lf °C"	 \
  	VDEF:T_Badezimmer=temp2,LAST    	"GPRINT:T_Badezimmer:%.1lf °C"   \
- 	VDEF:T_Wohnzimmer=temp3,LAST    	"GPRINT:T_Wohnzimmer:%.1lf °C"	 \
+ 	VDEF:T_Balkon=temp3,LAST    	"GPRINT:T_Balkon:%.1lf °C"	 \
  	VDEF:T_Babyzimmer=temp4,LAST    	"GPRINT:T_Babyzimmer:%.1lf °C"	 
 
 
@@ -190,15 +190,15 @@ rrdtool graph \
 	DEF:humid4=$USER_HOME_DIR/Weatherstation.rrd:humid4:AVERAGE   \
  	LINE1:humid#DBFFDA:Humidity   \
  	LINE2:humid0#BBFDBA:Humidity0   \
- 	LINE3:humid1#96FC94:H_Schlafzimmer   \
- 	LINE4:humid2#75FB73:H_Badezimmer   \
- 	LINE5:humid3#51FC4E:H_Wohnzimmer   \
- 	LINE6:humid4#26FD22:H_Babyzimmer   \
+ 	LINE3:humid1#008080:H_Schlafzimmer   \
+ 	LINE4:humid2#00ff00:H_Badezimmer   \
+ 	LINE5:humid3#40e0d0:H_Balkon   \
+ 	LINE6:humid4#37BC61:H_Babyzimmer   \
  	VDEF:HUMID=humid,LAST  	"GPRINT:HUMID:%.1lf percent"	 \
  	VDEF:H_0=humid0,LAST  	"GPRINT:H_0:%.1lf percent"	 \
  	VDEF:H_Schlafzimmer=humid1,LAST  	"GPRINT:H_Schlafzimmer:%.1lf percent"	 \
  	VDEF:H_Badezimmer=humid2,LAST  	"GPRINT:H_Badezimmer:%.1lf percent"	 \
- 	VDEF:H_Wohnzimmer=humid3,LAST  	"GPRINT:H_Wohnzimmer:%.1lf percent"	 \
+ 	VDEF:H_Balkon=humid3,LAST  	"GPRINT:H_Balkon:%.1lf percent"	 \
  	VDEF:H_Babyzimmer=humid4,LAST  	"GPRINT:H_Babyzimmer:%.1lf percent"	 
 
 rrdtool graph \
@@ -217,15 +217,15 @@ rrdtool graph \
 	DEF:humid4=$USER_HOME_DIR/Weatherstation.rrd:humid4:AVERAGE   \
  	LINE1:humid#DBFFDA:Humidity   \
  	LINE2:humid0#BBFDBA:Humidity0   \
- 	LINE3:humid1#96FC94:H_Schlafzimmer   \
- 	LINE4:humid2#75FB73:H_Badezimmer   \
- 	LINE5:humid3#51FC4E:H_Wohnzimmer   \
- 	LINE6:humid4#26FD22:H_Babyzimmer   \
+ 	LINE3:humid1#008080:H_Schlafzimmer   \
+ 	LINE4:humid2#00ff00:H_Badezimmer   \
+ 	LINE5:humid3#40e0d0:H_Balkon   \
+ 	LINE6:humid4#37BC61:H_Babyzimmer   \
  	VDEF:HUMID=humid,LAST  	"GPRINT:HUMID:%.1lf percent"	 \
  	VDEF:H_0=humid0,LAST  	"GPRINT:H_0:%.1lf percent"	 \
  	VDEF:H_Schlafzimmer=humid1,LAST  	"GPRINT:H_Schlafzimmer:%.1lf percent"	 \
  	VDEF:H_Badezimmer=humid2,LAST  	"GPRINT:H_Badezimmer:%.1lf percent"	 \
- 	VDEF:H_Wohnzimmer=humid3,LAST  	"GPRINT:H_Wohnzimmer:%.1lf percent"	 \
+ 	VDEF:H_Balkon=humid3,LAST  	"GPRINT:H_Balkon:%.1lf percent"	 \
  	VDEF:H_Babyzimmer=humid4,LAST  	"GPRINT:H_Babyzimmer:%.1lf percent"	 
 
 rrdtool graph \
